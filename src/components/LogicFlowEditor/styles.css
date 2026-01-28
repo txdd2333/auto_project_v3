@@ -1,0 +1,434 @@
+.logicflow-editor-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: #fafafa;
+}
+
+.logicflow-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* 自定义拖拽面板样式 */
+.lf-dndpanel {
+  background: white;
+  border-right: 1px solid #e5e7eb;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.04);
+}
+
+.lf-dndpanel-title {
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.lf-dndpanel-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 8px;
+  margin: 8px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: move;
+  transition: all 0.2s ease;
+  background: white;
+}
+
+.lf-dndpanel-item:hover {
+  border-color: #3b82f6;
+  background: #eff6ff;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
+  transform: translateY(-1px);
+}
+
+.lf-dndpanel-item-icon {
+  margin-bottom: 8px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lf-dndpanel-item-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.lf-dndpanel-item-text {
+  font-size: 12px;
+  color: #4b5563;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* 自定义右键菜单样式 */
+.lf-menu {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 4px;
+  min-width: 140px;
+}
+
+.lf-menu-item {
+  padding: 8px 12px;
+  font-size: 13px;
+  color: #374151;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.lf-menu-item:hover {
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+.lf-menu-divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 4px 0;
+}
+
+/* 自定义小地图样式 */
+.lf-mini-map {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.lf-mini-map-header {
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lf-mini-map-header span {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.lf-mini-map-close {
+  cursor: pointer;
+  color: #9ca3af;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0 4px;
+  transition: color 0.15s;
+}
+
+.lf-mini-map-close:hover {
+  color: #374151;
+}
+
+.lf-mini-map-graph {
+  background: #fafafa;
+}
+
+/* 自定义控制面板样式 */
+.lf-control {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 4px;
+}
+
+.lf-control-item {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+  margin: 2px;
+}
+
+.lf-control-item:hover {
+  background: #f3f4f6;
+}
+
+.lf-control-item:active {
+  background: #e5e7eb;
+}
+
+.lf-control-item svg {
+  width: 18px;
+  height: 18px;
+  color: #6b7280;
+}
+
+.lf-control-item:hover svg {
+  color: #374151;
+}
+
+/* 选中节点样式 - 增强视觉反馈 */
+.lf-node-selected rect,
+.lf-node-selected circle,
+.lf-node-selected ellipse,
+.lf-node-selected polygon {
+  stroke: #3b82f6 !important;
+  stroke-width: 3 !important;
+  filter: drop-shadow(0 4px 12px rgba(59, 130, 246, 0.3));
+}
+
+/* 悬停节点样式 - 增强交互反馈 */
+.lf-node:hover rect,
+.lf-node:hover circle,
+.lf-node:hover ellipse,
+.lf-node:hover polygon {
+  filter: brightness(0.95) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
+  cursor: move;
+}
+
+/* 节点过渡动画 */
+.lf-node rect,
+.lf-node circle,
+.lf-node ellipse,
+.lf-node polygon {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 节点文本样式增强 */
+.lf-node text {
+  transition: fill 0.2s ease;
+  pointer-events: none;
+  user-select: none;
+}
+
+.lf-node:hover text {
+  fill: #1f2937;
+}
+
+/* 连线样式增强 - 更专业的线条和动画 */
+.lf-edge path {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+.lf-edge:hover path {
+  stroke: #3b82f6 !important;
+  stroke-width: 3 !important;
+  filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3));
+}
+
+.lf-edge-selected path {
+  stroke: #3b82f6 !important;
+  stroke-width: 3 !important;
+  filter: drop-shadow(0 2px 6px rgba(59, 130, 246, 0.4));
+}
+
+/* 连线动画效果 */
+@keyframes flowAnimation {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 20;
+  }
+}
+
+.lf-edge.animated path {
+  stroke-dasharray: 5 5;
+  animation: flowAnimation 0.5s linear infinite;
+}
+
+/* 连线箭头样式增强 */
+.lf-edge-arrow {
+  fill: #94a3b8;
+  transition: fill 0.3s ease;
+}
+
+.lf-edge:hover .lf-edge-arrow {
+  fill: #3b82f6;
+  filter: drop-shadow(0 1px 3px rgba(59, 130, 246, 0.3));
+}
+
+.lf-edge-selected .lf-edge-arrow {
+  fill: #3b82f6;
+  filter: drop-shadow(0 1px 4px rgba(59, 130, 246, 0.4));
+}
+
+/* 连线文本背景增强 */
+.lf-edge-text-bg {
+  fill: #ffffff;
+  stroke: #e5e7eb;
+  stroke-width: 1;
+  rx: 4;
+  ry: 4;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.1));
+}
+
+.lf-edge:hover .lf-edge-text-bg {
+  fill: #eff6ff;
+  stroke: #3b82f6;
+}
+
+/* 锚点样式 - 更优雅的显示和交互 */
+.lf-anchor {
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lf-node:hover .lf-anchor {
+  opacity: 1;
+}
+
+.lf-anchor circle {
+  fill: white;
+  stroke: #3b82f6;
+  stroke-width: 2;
+  transition: all 0.2s ease;
+  filter: drop-shadow(0 1px 3px rgba(59, 130, 246, 0.2));
+}
+
+.lf-anchor:hover circle {
+  fill: #3b82f6;
+  r: 5;
+  filter: drop-shadow(0 2px 6px rgba(59, 130, 246, 0.4));
+  cursor: crosshair;
+}
+
+/* 锚点连接时的动画 */
+@keyframes anchorPulse {
+  0%, 100% {
+    r: 4;
+    opacity: 1;
+  }
+  50% {
+    r: 6;
+    opacity: 0.8;
+  }
+}
+
+.lf-anchor.connecting circle {
+  animation: anchorPulse 1s ease-in-out infinite;
+  fill: #3b82f6;
+}
+
+/* 文本编辑框样式 */
+.lf-text-input {
+  border: 2px solid #3b82f6;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 13px;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+}
+
+/* 选择框样式 */
+.lf-selection-select {
+  border: 2px dashed #3b82f6;
+  background: rgba(59, 130, 246, 0.05);
+}
+
+/* 网格背景增强 */
+.lf-background {
+  background-color: #fafafa;
+}
+
+/* 调整工具栏位置和样式 */
+.lf-control {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* 小地图位置 */
+.lf-mini-map {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .lf-dndpanel {
+    width: 60px !important;
+  }
+
+  .lf-dndpanel-item-text {
+    font-size: 10px;
+  }
+
+  .lf-mini-map {
+    width: 150px !important;
+    height: 90px !important;
+  }
+
+  .lf-control {
+    right: 10px;
+    top: 10px;
+  }
+}
+
+/* 加载状态 */
+.logicflow-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* 空状态 */
+.logicflow-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.logicflow-empty svg {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 16px;
+  opacity: 0.4;
+}
+
+.lf-dnd-text {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+  word-break: break-all;
+  line-height: 1.3;
+}
+
+.pattern-group-divider .lf-dnd-text {
+  font-weight: 600;
+  color: #374151;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  text-align: left;
+  padding-left: 8px;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 4px;
+}
+
+.pattern-group-divider .lf-dnd-shape {
+  display: none;
+}

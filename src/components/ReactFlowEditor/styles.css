@@ -1,0 +1,87 @@
+/* 隐藏 ReactFlow 默认的选择框 */
+.react-flow__selection,
+.react-flow__nodesselection,
+.react-flow__nodesselection-rect {
+  display: none !important;
+}
+
+/* 优化节点选中状态 */
+.react-flow__node.selected {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4) !important;
+  z-index: 10 !important;
+}
+
+/* 为选中的节点添加蓝色高亮边框 */
+.react-flow__node.selected > div {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* 优化边选中状态 */
+.react-flow__edge.selected .react-flow__edge-path {
+  stroke: #3b82f6 !important;
+  stroke-width: 3px !important;
+  filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.5));
+}
+
+.react-flow__edge.selected {
+  z-index: 1000 !important;
+}
+
+/* 框选时的拖拽框样式 */
+.react-flow__selectionpane {
+  cursor: crosshair;
+}
+
+/* 选择模式下的光标 */
+[data-interaction-mode="select"] .react-flow__pane {
+  cursor: default;
+}
+
+/* 平移模式下的光标 */
+[data-interaction-mode="pan"] .react-flow__pane {
+  cursor: grab !important;
+}
+
+[data-interaction-mode="pan"] .react-flow__pane.dragging {
+  cursor: grabbing !important;
+}
+
+/* 选择模式下节点可拖动的光标提示 */
+[data-interaction-mode="select"] .react-flow__node {
+  cursor: pointer;
+}
+
+[data-interaction-mode="select"] .react-flow__node:hover {
+  cursor: move;
+}
+
+/* 平移模式下节点显示抓手光标 */
+[data-interaction-mode="pan"] .react-flow__node {
+  cursor: grab !important;
+  pointer-events: none;
+}
+
+[data-interaction-mode="pan"] .react-flow__node:hover {
+  cursor: grab !important;
+}
+
+/* 平移模式下禁用连线创建 */
+[data-interaction-mode="pan"] .react-flow__handle {
+  pointer-events: none !important;
+  cursor: grab !important;
+}
+
+/* 拖拽选择中的样式 - 只在拖拽时显示 */
+.react-flow__renderer .react-flow__selection {
+  background: rgba(59, 130, 246, 0.08) !important;
+  border: 2px dashed rgba(59, 130, 246, 0.6) !important;
+  border-radius: 8px !important;
+  display: block !important;
+}
+
+/* 拖拽选择完成后隐藏默认选择框 */
+.react-flow__nodesselection {
+  display: none !important;
+}
